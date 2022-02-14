@@ -34,6 +34,18 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  Map<int, Map<String, dynamic>> quizLists = {
+    1: {"q": "แมวเป็นสัตว์เลี้ยงลูกด้วยนม มี 4 ขา ใช่หรือไม่?", "a": true},
+    2: {
+      "q": "ดาวเคราะห์ที่อยู่ใกล้ดวงอาทิตย์ที่สุดคือดาวเสาร์ ใช่หรือไม่?",
+      "a": false
+    },
+    3: {
+      "q": "Unicorn เป็นสัตว์ท้องถิ่นของประเทศ Scotland ใช่หรือไม่?",
+      "a": true
+    },
+  };
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -76,7 +88,11 @@ class _HomeState extends State<Home> {
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 16),
                 child: Text(
-                  'Quiz',
+                  '${quizLists[1]!["q"]}',
+                  style: TextStyle(
+                    fontSize: 26,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
               Column(

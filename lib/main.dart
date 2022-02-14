@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -35,38 +37,85 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 22),
-      margin: EdgeInsets.only(top: 26, left: 16, right: 16, bottom: 26),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(24),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
+        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 22),
+        margin: EdgeInsets.only(top: 26, left: 16, right: 16, bottom: 26),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(24),
+        ),
+        child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                'Quiz No.',
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Quiz No.',
+                        style: TextStyle(
+                            fontSize: 15, fontWeight: FontWeight.w600),
+                      ),
+                      Text('/')
+                    ],
+                  ),
+                  SizedBox(
+                    child: Divider(height: 0),
+                    height: 30,
+                  ),
+                  Text(
+                    "Please answer this question : ",
+                    style: TextStyle(
+                      fontSize: 15,
+                      color: Colors.grey.shade500,
+                    ),
+                  )
+                ],
               ),
-              Text('/')
-            ],
-          ),
-          SizedBox(
-            child: Divider(height: 0),
-            height: 30,
-          ),
-          Text(
-            "Please answer this question : ",
-            style: TextStyle(
-              fontSize: 15,
-              color: Colors.grey.shade500,
-            ),
-          )
-        ],
-      ),
-    );
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 16),
+                child: Text(
+                  'Quiz',
+                ),
+              ),
+              Column(
+                children: [
+                  ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(
+                        primary: Colors.teal,
+                        minimumSize: Size(double.infinity, 54),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(26),
+                        )),
+                    onPressed: () {},
+                    icon: Icon(Icons.check),
+                    label: Text(
+                      "TRUE",
+                      style:
+                          TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(
+                        primary: Colors.red,
+                        minimumSize: Size(double.infinity, 54),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(26),
+                        )),
+                    onPressed: () {},
+                    icon: Icon(Icons.close),
+                    label: Text(
+                      "FALSE",
+                      style:
+                          TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+                    ),
+                  )
+                ],
+              )
+            ]));
   }
 }

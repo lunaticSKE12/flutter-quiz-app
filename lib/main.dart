@@ -1,6 +1,5 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
+import 'package:patterns_canvas/patterns_canvas.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,14 +12,17 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        backgroundColor: Colors.deepPurple.shade300,
-        appBar: AppBar(
+      home: CustomPaint(
+        painter: ContainerPatternPainter(),
+        child: Scaffold(
           backgroundColor: Colors.transparent,
-          title: Text('Quiz App'),
-          elevation: 0,
+          appBar: AppBar(
+            backgroundColor: Colors.transparent,
+            title: Text('Quiz App'),
+            elevation: 0,
+          ),
+          body: Home(),
         ),
-        body: Home(),
       ),
     );
   }
@@ -190,4 +192,24 @@ class _HomeState extends State<Home> {
       ),
     );
   }
+}
+
+class ContainerPatternPainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    Checkers(
+            featuresCount: 5,
+            bgColor: Colors.deepPurple.shade300,
+            fgColor: Colors.grey.shade200.withOpacity(0.1))
+        .paintOnWidget(canvas, size);
+    // HorizontalStripesLight(
+    //         bgColor: Color(0xff0509050), fgColor: Color(0xfffdbf6f))
+    //     .paintOnWidget(canvas, size);
+    // VerticalStripesThick(
+    //         bgColor: Color(0xff0509050), fgColor: Color(0xfffdbf6f))
+    //     .paintOnWidget(canvas, size);
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) => true;
 }
